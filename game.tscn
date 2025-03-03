@@ -1,0 +1,291 @@
+[gd_scene load_steps=23 format=3 uid="uid://cvau8h7v3gqre"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Data/csv_loader.gd" id="1_hb03m"]
+[ext_resource type="Script" path="res://Assets/Scripts/Game/parallax_background.gd" id="2_bbted"]
+[ext_resource type="Shader" path="res://Assets/Shaders/scrolling_shader.gdshader" id="3_yuu25"]
+[ext_resource type="Script" path="res://Assets/Scripts/Player/player.gd" id="4_hwd1g"]
+[ext_resource type="Texture2D" uid="uid://bsnf6ln2dcrrb" path="res://Assets/Images/Game/Celestial Clouds.png" id="4_mrm6n"]
+[ext_resource type="Texture2D" uid="uid://cs1sihg2lux8o" path="res://Assets/Images/Game/Cloud 1.png" id="5_2d71c"]
+[ext_resource type="Texture2D" uid="uid://bkbowoojwrjg" path="res://Assets/Images/Game/Cloud 2.png" id="6_pev5e"]
+[ext_resource type="Texture2D" uid="uid://dbnnxc7d4hoit" path="res://Assets/Images/Game/Cloud 3.png" id="7_2a2ok"]
+[ext_resource type="Texture2D" uid="uid://cpm656s1qi6lm" path="res://Assets/Images/Game/Cloud 4.png" id="8_wqtyj"]
+[ext_resource type="Texture2D" uid="uid://qaa2hgd77b43" path="res://Assets/Images/Game/White Banner.png" id="9_2vqsu"]
+[ext_resource type="Texture2D" uid="uid://bjkam5pglvly2" path="res://Assets/Images/Player/Pink_Chara.png" id="11_1lj73"]
+[ext_resource type="Script" path="res://Assets/Scripts/Game/score_manager.gd" id="13_a4kp0"]
+[ext_resource type="Script" path="res://Assets/Scripts/Game/ui.gd" id="14_w1y5x"]
+[ext_resource type="AudioStream" uid="uid://bl440kpp6nb7h" path="res://Assets/Audio/correct_sound.wav" id="15_qs0mc"]
+[ext_resource type="AudioStream" uid="uid://dbgunktw0p1r7" path="res://Assets/Audio/wrong_sound.wav" id="16_mo8f1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbyyq"]
+shader = ExtResource("3_yuu25")
+shader_parameter/speed = 0.5
+shader_parameter/time_offset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suyp3"]
+size = Vector2(50, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqd0n"]
+atlas = ExtResource("11_1lj73")
+region = Rect2(0, 1, 70, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qntjs"]
+atlas = ExtResource("11_1lj73")
+region = Rect2(70, 1, 70, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by1su"]
+atlas = ExtResource("11_1lj73")
+region = Rect2(140, 1, 70, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml8ja"]
+atlas = ExtResource("11_1lj73")
+region = Rect2(210, 1, 70, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycybg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqd0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qntjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by1su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml8ja")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+position = Vector2(0, -18)
+script = ExtResource("1_hb03m")
+csv_file = "res://Assets/Data/drug_list.csv"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_bbted")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_gbyyq")
+position = Vector2(3, 150)
+scale = Vector2(0.526257, 0.526257)
+texture = ExtResource("4_mrm6n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 300)
+
+[node name="Banner" type="TextureRect" parent="."]
+offset_left = -269.0
+offset_top = -17.0
+offset_right = 293.0
+offset_bottom = 219.0
+texture = ExtResource("9_2vqsu")
+
+[node name="BrandLabel" type="Label" parent="Banner"]
+offset_left = 132.0
+offset_top = 67.0
+offset_right = 410.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0.458824, 1)
+theme_override_font_sizes/font_size = 40
+text = "\"Brand Name\""
+horizontal_alignment = 1
+autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LaneContainer" type="Node2D" parent="."]
+position = Vector2(0, 400)
+
+[node name="Lane0" type="ColorRect" parent="LaneContainer" groups=["\"lanes\""]]
+offset_left = -389.0
+offset_top = -385.0
+offset_right = -189.0
+offset_bottom = 215.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="1st Cloud" type="TextureRect" parent="LaneContainer/Lane0"]
+offset_left = -31.0
+offset_top = 168.0
+offset_right = 173.0
+offset_bottom = 327.0
+rotation = -0.308772
+texture = ExtResource("5_2d71c")
+
+[node name="Label" type="Label" parent="LaneContainer/Lane0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_right = 0.055
+offset_left = 29.0
+offset_top = 200.0
+offset_right = 168.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 0.984314)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "\"Generic 1\""
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Lane1" type="ColorRect" parent="LaneContainer" groups=["\"lanes\""]]
+offset_left = -189.0
+offset_top = -385.0
+offset_right = 11.0
+offset_bottom = 215.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="2nd Cloud" type="TextureRect" parent="LaneContainer/Lane1"]
+offset_left = -16.0
+offset_top = 161.0
+offset_right = 188.0
+offset_bottom = 306.0
+rotation = -0.10472
+texture = ExtResource("6_pev5e")
+
+[node name="Label" type="Label" parent="LaneContainer/Lane1"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 200.0
+offset_right = 179.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "\"Generic 1\""
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Lane2" type="ColorRect" parent="LaneContainer" groups=["\"lanes\""]]
+offset_left = 11.0
+offset_top = -385.0
+offset_right = 211.0
+offset_bottom = 215.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="3rd Cloud" type="TextureRect" parent="LaneContainer/Lane2"]
+offset_left = -24.0
+offset_top = 179.0
+offset_right = 180.0
+offset_bottom = 337.0
+rotation = -0.267955
+texture = ExtResource("7_2a2ok")
+
+[node name="Label" type="Label" parent="LaneContainer/Lane2"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 200.0
+offset_right = 179.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "\"Generic 1\""
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Lane3" type="ColorRect" parent="LaneContainer" groups=["\"lanes\""]]
+offset_left = 211.0
+offset_top = -385.0
+offset_right = 411.0
+offset_bottom = 215.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="4th Cloud" type="TextureRect" parent="LaneContainer/Lane3"]
+offset_left = -3.0
+offset_top = 149.0
+offset_right = 201.0
+offset_bottom = 302.0
+texture = ExtResource("8_wqtyj")
+
+[node name="Label" type="Label" parent="LaneContainer/Lane3"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 200.0
+offset_right = 179.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "\"Generic 1\""
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player_CharacterBody2D2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("lane_container")]
+position = Vector2(0, 325)
+script = ExtResource("4_hwd1g")
+lane_container = NodePath("../LaneContainer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_CharacterBody2D2"]
+shape = SubResource("RectangleShape2D_suyp3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_CharacterBody2D2"]
+position = Vector2(0, 50)
+sprite_frames = SubResource("SpriteFrames_ycybg")
+animation = &"Run"
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_w1y5x")
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_right = 28.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.92549, 0.639216, 0.741176, 1)
+theme_override_colors/font_shadow_color = Color(0.286275, 0.145098, 0.360784, 1)
+theme_override_font_sizes/font_size = 20
+text = "\"Testing\""
+
+[node name="FeedbackLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = 86.0
+offset_right = 177.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.16, 1)
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreManager" type="Node" parent="."]
+script = ExtResource("13_a4kp0")
+
+[node name="WrongSound" type="AudioStreamPlayer" parent="ScoreManager"]
+stream = ExtResource("16_mo8f1")
+volume_db = -2.5
+
+[node name="CorrectSound" type="AudioStreamPlayer" parent="ScoreManager"]
+stream = ExtResource("15_qs0mc")
+volume_db = -5.0

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://by2ctkl81h00s"
+
+[deps]
+
+files=["res://Assets/Data/drug_list.Generic.translation"]
+
+source_file="res://Assets/Data/drug_list.csv"
+dest_files=["res://Assets/Data/drug_list.Generic.translation"]
+
+[params]
+
+compress=true
+delimiter=0

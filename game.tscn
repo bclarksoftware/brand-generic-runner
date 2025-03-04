@@ -61,7 +61,6 @@ animations = [{
 }]
 
 [node name="Game" type="Node2D"]
-position = Vector2(0, -18)
 script = ExtResource("1_hb03m")
 csv_file = "res://Assets/Data/drug_list.csv"
 

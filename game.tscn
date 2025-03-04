@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=3 uid="uid://cvau8h7v3gqre"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Data/csv_loader.gd" id="1_hb03m"]
-[ext_resource type="Script" path="res://Assets/Scripts/Game/parallax_background.gd" id="2_bbted"]
-[ext_resource type="Shader" path="res://Assets/Shaders/scrolling_shader.gdshader" id="3_yuu25"]
-[ext_resource type="Script" path="res://Assets/Scripts/Player/player.gd" id="4_hwd1g"]
+[ext_resource type="Script" uid="uid://b1huwya5au214" path="res://Assets/Scripts/Data/csv_loader.gd" id="1_hb03m"]
+[ext_resource type="Script" uid="uid://dc87753s82agq" path="res://Assets/Scripts/Game/parallax_background.gd" id="2_bbted"]
+[ext_resource type="Shader" uid="uid://dsim3elm8dtr1" path="res://Assets/Shaders/scrolling_shader.gdshader" id="3_yuu25"]
+[ext_resource type="Script" uid="uid://bitf6jej0yrgp" path="res://Assets/Scripts/Player/player.gd" id="4_hwd1g"]
 [ext_resource type="Texture2D" uid="uid://bsnf6ln2dcrrb" path="res://Assets/Images/Game/Celestial Clouds.png" id="4_mrm6n"]
 [ext_resource type="Texture2D" uid="uid://cs1sihg2lux8o" path="res://Assets/Images/Game/Cloud 1.png" id="5_2d71c"]
 [ext_resource type="Texture2D" uid="uid://bkbowoojwrjg" path="res://Assets/Images/Game/Cloud 2.png" id="6_pev5e"]
@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cpm656s1qi6lm" path="res://Assets/Images/Game/Cloud 4.png" id="8_wqtyj"]
 [ext_resource type="Texture2D" uid="uid://qaa2hgd77b43" path="res://Assets/Images/Game/White Banner.png" id="9_2vqsu"]
 [ext_resource type="Texture2D" uid="uid://bjkam5pglvly2" path="res://Assets/Images/Player/Pink_Chara.png" id="11_1lj73"]
-[ext_resource type="Script" path="res://Assets/Scripts/Game/score_manager.gd" id="13_a4kp0"]
-[ext_resource type="Script" path="res://Assets/Scripts/Game/ui.gd" id="14_w1y5x"]
+[ext_resource type="Script" uid="uid://dxlse6wal86xv" path="res://Assets/Scripts/Game/score_manager.gd" id="13_a4kp0"]
+[ext_resource type="Script" uid="uid://qymr51vhwrs0" path="res://Assets/Scripts/Game/ui.gd" id="14_w1y5x"]
 [ext_resource type="AudioStream" uid="uid://bl440kpp6nb7h" path="res://Assets/Audio/correct_sound.wav" id="15_qs0mc"]
 [ext_resource type="AudioStream" uid="uid://dbgunktw0p1r7" path="res://Assets/Audio/wrong_sound.wav" id="16_mo8f1"]
 
@@ -87,6 +87,7 @@ offset_bottom = 219.0
 texture = ExtResource("9_2vqsu")
 
 [node name="BrandLabel" type="Label" parent="Banner"]
+layout_mode = 0
 offset_left = 132.0
 offset_top = 67.0
 offset_right = 410.0
@@ -111,6 +112,7 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="1st Cloud" type="TextureRect" parent="LaneContainer/Lane0"]
+layout_mode = 0
 offset_left = -31.0
 offset_top = 168.0
 offset_right = 173.0
@@ -145,6 +147,7 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="2nd Cloud" type="TextureRect" parent="LaneContainer/Lane1"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 161.0
 offset_right = 188.0
@@ -176,6 +179,7 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="3rd Cloud" type="TextureRect" parent="LaneContainer/Lane2"]
+layout_mode = 0
 offset_left = -24.0
 offset_top = 179.0
 offset_right = 180.0
@@ -207,6 +211,7 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="4th Cloud" type="TextureRect" parent="LaneContainer/Lane3"]
+layout_mode = 0
 offset_left = -3.0
 offset_top = 149.0
 offset_right = 201.0

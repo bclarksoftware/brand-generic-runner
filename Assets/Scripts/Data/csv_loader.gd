@@ -6,7 +6,6 @@ extends Node
 var drug_list = []  # Stores Brand/Generic pairs
 var generic_to_brands = {}  # Maps Generic names to multiple brands
 var current_question = {}  # Stores the active Brand/Generic question
-var incorrect_answers = []  # List to store incorrect answers
 
 @onready var brand_label: Label = $Banner/BrandLabel
 @onready var lane_container: Node = $LaneContainer
@@ -77,15 +76,12 @@ func assign_answers():
 		print("❌ ERROR: Drug list is empty!")
 		return
 
-	var correct_answer = current_question.get("generic", "").strip_edges()
-	if correct_answer == "":
-		print("❌ ERROR: current_question does not contain a valid generic name!")
-		return
+	var correct_answer = current_question["generic"]
 
 	var incorrect_answers = []
 	
 	while incorrect_answers.size() < 3:
-		var random_drug = drug_list[randi() % drug_list.size()]["generic"].strip_edges()
+		var random_drug = drug_list[randi() % drug_list.size()]["generic"]
 		if random_drug != correct_answer and not incorrect_answers.has(random_drug):
 			incorrect_answers.append(random_drug)
 
@@ -93,18 +89,14 @@ func assign_answers():
 	all_answers.shuffle()  # Randomize answer placement
 
 	print("✅ Correct Generic BEFORE Assigning to Lanes:", correct_answer)
-	print("✅ Assigned Answers:", all_answers)
 
 	for i in range(lane_container.get_child_count()):
 		var lane = lane_container.get_child(i)
 		var label = lane.get_node_or_null("Label")
 
 		if label:
-			label.text = all_answers[i].strip_edges()  # Assign generic names correctly
+			label.text = all_answers[i]  # Assign generic names correctly
 			lane.set_meta("correct", all_answers[i] == correct_answer)  # Ensure correct lane is marked
-			print("✅ Lane", i, "assigned:", label.text, "| Correct:", all_answers[i] == correct_answer)
-		else:
-			print("❌ ERROR: Label not found in lane:", lane.name)
 
 
 ## Check the selected answer.

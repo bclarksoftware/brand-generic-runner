@@ -7,8 +7,6 @@ func _ready():
 	if score_manager is Node and score_manager.has_method("get_score"):
 		score_manager.connect("score_updated", _update_score_label)
 		_update_score_label(score_manager.get_score())  # ✅ Call get_score() instead of score directly
-	else:
-		print("❌ ScoreManager is missing or incorrect. Check scene setup.")
 
 func _update_score_label(new_score):
 	score_label.text = "Score: " + str(new_score)

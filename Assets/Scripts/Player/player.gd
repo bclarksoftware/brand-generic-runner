@@ -44,7 +44,6 @@ func move_right():
 func update_position():
 	var lane_nodes = lane_container.get_children()
 	var target_lane = lane_nodes[current_lane]
-
-	# ✅ Move to the center of the lane
 	var lane_center_x = target_lane.global_position.x + (target_lane.get_rect().size.x / 2)
+	
 	global_position.x = lane_center_x

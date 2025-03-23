@@ -16,7 +16,8 @@ var _feedback_timer: Timer = null  # Timer for feedback display
 @onready var feedback_label: Label = $UI/FeedbackLabel
 @onready var score_manager: Node = $ScoreManager
 @onready var player: Node = $Player_CharacterBody2D2
-@onready var copy_to_clipboard_button: Button = $UI/CopyToClipboard
+@onready var copy_to_clipboard_button: Button = $UI/CopyToClipboardButton
+@onready var restart_button: Button = $UI/RestartButton
 
 
 func _ready():
@@ -152,11 +153,15 @@ func _on_feedback_timer_timeout():
 	if _curr_question_index >= drug_list.size():
 		print("🔍 All questions answered! Missed Questions:", missed_questions)
 		brand_label.text = "End"
+		restart_button.visible = true
 	else:
 		set_question()
 
 # Handle continue button press
-func _on_continue_pressed():
+func _on_reset_button_pressed():
+	# Hide the restart button
+	restart_button.visible = false
+
 	# Reset game state
 	_curr_question_index = 0
 	missed_questions.clear()
